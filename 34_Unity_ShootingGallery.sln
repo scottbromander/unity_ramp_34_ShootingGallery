@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{9FA11BA1-A50B-049D-A15E-A1080E4C6070}") = "34_Unity_ShootingGallery", "Assembly-CSharp-firstpass.csproj", "{580B59B7-A0A6-672D-3BA0-46B3E4AC25D0}"
+EndProject
 Project("{9FA11BA1-A50B-049D-A15E-A1080E4C6070}") = "34_Unity_ShootingGallery", "Assembly-CSharp.csproj", "{CF5D9EC1-8F0B-1497-6F0C-AC2EF239CDAB}"
 EndProject
 Global
@@ -9,6 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{580B59B7-A0A6-672D-3BA0-46B3E4AC25D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580B59B7-A0A6-672D-3BA0-46B3E4AC25D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580B59B7-A0A6-672D-3BA0-46B3E4AC25D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580B59B7-A0A6-672D-3BA0-46B3E4AC25D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF5D9EC1-8F0B-1497-6F0C-AC2EF239CDAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF5D9EC1-8F0B-1497-6F0C-AC2EF239CDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF5D9EC1-8F0B-1497-6F0C-AC2EF239CDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
