@@ -11,6 +11,11 @@ public class TargetBehaviour : MonoBehaviour {
 
 	private Vector3 originalPos;
 
+	public float moveSpeed = 1f;
+	public float frequency = 5f;
+	public float magnitude = 0.1f;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +32,9 @@ public class TargetBehaviour : MonoBehaviour {
 		if (!beenHit && activated) {
 			beenHit = true;
 			animator.Play ("Flip");
+
+			StopAllCoroutines ();
+
 			StartCoroutine (HideTarget ());
 		}
 	}
@@ -37,10 +45,15 @@ public class TargetBehaviour : MonoBehaviour {
 			beenHit = false;
 			animator.Play ("Idle");
 
-			iTween.MoveBy (parent, iTween.Hash ("y", 1.4, "easeType", "easeInOutExpo", "time", 0.5));
+			iTween.MoveBy (parent, iTween.Hash ("y", 1.4, "easeType", "easeInOutExpo", "time", 0.5,
+				"oncomplete", "OnShown", "oncompletetarget", gameObject));
 		}
 	}
 
+	void OnShown(){
+		StartCoroutine ("MoveTarget");
+	}
+		
 	public IEnumerator HideTarget(){
 		yield return new WaitForSeconds (0.5f);
 
@@ -48,6 +61,31 @@ public class TargetBehaviour : MonoBehaviour {
 			"easeType", "easeOutQuad", "loopType", "none",
 			"time", 0.5, "oncomplete", "OnHidden",
 			"oncompletetarget", gameObject));
+	}
+
+	IEnumerator MoveTarget(){
+		var relativeEndPos = parent.transform.position;
+
+		if (transform.eulerAngles == Vector3.zero) {
+			relativeEndPos.x = 6;
+		} else {
+			relativeEndPos.x = -6;
+		}
+
+		var movementTime = Vector3.Distance (parent.transform.position, relativeEndPos) * moveSpeed;
+		var pos = parent.transform.position;
+		var time = 0f;
+
+		while (time < movementTime) {
+			time += Time.deltaTime;
+			pos += parent.transform.right * Time.deltaTime * moveSpeed;
+			parent.transform.position = pos + (parent.transform.up *
+				Mathf.Sin (Time.time * frequency) * magnitude);
+
+			yield return new WaitForSeconds (0);
+		}
+
+		StartCoroutine (HideTarget ());
 	}
 
 	/// <summary>
