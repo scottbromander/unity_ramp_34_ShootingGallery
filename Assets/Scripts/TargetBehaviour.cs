@@ -15,14 +15,16 @@ public class TargetBehaviour : MonoBehaviour {
 	public float frequency = 5f;
 	public float magnitude = 0.1f;
 
-
+	void Awake(){
+		GameController._instance.targets.Add (this);
+	}
 
 	// Use this for initialization
 	void Start () {
 		parent = transform.parent.gameObject;
 		animator = parent.GetComponent<Animator> ();
 		originalPos = parent.transform.position;
-		ShowTarget ();
+		//ShowTarget ();
 	}
 
 	/// <summary>
