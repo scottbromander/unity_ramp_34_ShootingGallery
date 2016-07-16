@@ -6,22 +6,22 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 	public static GameController _instance;
 
-	private float timeLeft;
+	private float timeLeft = 50;
 	public Text timeText;
 
 	[HideInInspector]
 	public List<TargetBehaviour> targets = new List<TargetBehaviour>();
 
+	 
 	void Awake() {
 		_instance = this;
 
 		timeLeft = 50;
-		timeText.text = timeLeft.ToString ();
+		timeText.text = timeLeft.ToString();
 	}
 
 	// Use this for initialization
 	void Start () {
-
 		iTween.ValueTo (gameObject, iTween.Hash (
 			"from", timeLeft,
 			"to", 0,
@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour {
 		timeText.text = "GAME OVER";
 	}
 
-	void TweenUpdate(float newValue){
+	void tweenUpdate(float newValue){
 		timeLeft = newValue;
 		if (timeLeft > 10) {
 			timeText.text = timeLeft.ToString("#");

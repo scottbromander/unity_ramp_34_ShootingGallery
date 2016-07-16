@@ -16,7 +16,7 @@ public class TargetBehaviour : MonoBehaviour {
 	public float magnitude = 0.1f;
 
 	void Awake(){
-		GameController._instance.targets.Add (this);
+		GameController._instance.targets.Add(this);
 	}
 
 	// Use this for initialization
