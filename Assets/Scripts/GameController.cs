@@ -6,8 +6,12 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 	public static GameController _instance;
 
-	private float timeLeft = 50;
+	private float timeLeft;
 	public Text timeText;
+
+	private int score;
+	public Text scoreText;
+	public Text highScoreText;
 
 	[HideInInspector]
 	public List<TargetBehaviour> targets = new List<TargetBehaviour>();
@@ -32,6 +36,9 @@ public class GameController : MonoBehaviour {
 		));
 
 		StartCoroutine ("SpawnTargets");
+
+		highScoreText.text = "High Score: " + PlayerPrefs.GetInt ("highScore").ToString();
+		score = 0;
 	}
 
 	void GameComplete(){
@@ -68,6 +75,16 @@ public class GameController : MonoBehaviour {
 			}
 
 			yield return new WaitForSeconds(Random.Range(0.5f * numOfTargets, 2.5f));
+		}
+	}
+
+	public void IncreaseScore() {
+		score++;
+		scoreText.text = "Score: " + score.ToString ();
+
+		if(score > PlayerPrefs.GetInt("highScore")){
+			PlayerPrefs.SetInt("highScore", score);
+			highScoreText.text = "High Score: " + score.ToString();
 		}
 	}
 	
